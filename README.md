@@ -101,7 +101,8 @@ frequency is actually the binding constraint — here it wasn't; feature *conten
 
 ## Author & supervision
 
-**Satya Pratheek Tata** — [github.com/TataSatyaPratheek](https://github.com/TataSatyaPratheek)
+**Satya Pratheek Tata** — [satyapratheek2000@gmail.com](mailto:satyapratheek2000@gmail.com)
+· [github.com/TataSatyaPratheek](https://github.com/TataSatyaPratheek)
 · [LinkedIn](https://linkedin.com/in/satyapratheek-tata)
 
 Supervised by **Prof. Mario Hernandez Tinoco**, with thanks to **Prof. Arnaud Dufays** (time series)
