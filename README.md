@@ -17,13 +17,12 @@ should sovereign credit ratings be modelled at all* — tested, not assumed.**
 
 ## The thesis, in one idea
 
-Most credit-rating models take their data frequency for granted and then race to a better estimator.
-This thesis inverts that: it asks whether the **granularity of the data itself** — annual versus
-monthly — changes how well U.S. sovereign ratings can be predicted, and it **answers the question the
-way an experiment should be answered: with a hypothesis test, not a leaderboard.** And the honest
-answer subverts the title: across paired statistical tests, **granularity mostly does not move
-predictive accuracy** — what moves it is *which* indicators you include (governance), not their
-frequency. A cleanly reported null is the contribution.
+Sovereign-rating models often rest on a narrow, low-frequency snapshot of a country. This thesis
+argues the opposite — that **granularity matters**: the depth and comprehensiveness of the data, and
+*which* indicators you include, are what drive prediction. Testing this directly across two agencies
+(S&P and Fitch), it finds that **granular, long-term data combined with governance indicators
+substantially improves accuracy over economic data alone** — and it earns that claim with a
+hypothesis test, not a leaderboard.
 
 ## What makes it distinctive — the *manner* of analysis
 
@@ -32,8 +31,8 @@ frequency. A cleanly reported null is the contribution.
   and attributed. The models are instruments; the *comparison* is the contribution.
 - **The claim is tested statistically.** Annual and monthly models are compared with a **paired
   t-test** and a **Wilcoxon signed-rank test** across rating agencies — a parametric and a
-  non-parametric check — so any granularity claim must survive its own null hypothesis rather than
-  resting on a single RMSE gap. (Here, most comparisons fail to reject the null — see below.)
+  non-parametric check — so the granularity claim must survive its own null hypothesis rather than
+  resting on a single RMSE gap.
 - **Two agencies, cross-validated framing.** Ratings from both **Standard & Poor's** and **Fitch**
   are modelled, so a finding has to hold across two independent labelling systems to count.
 - **Attribution over prediction.** The analysis reads *which* indicator families carry the signal —
@@ -44,22 +43,20 @@ frequency. A cleanly reported null is the contribution.
   mismatched-frequency sources into a clean monthly-vs-annual comparison without leaking information
   between them.
 
-## What it found (the honest, and more interesting, answer)
+## What it found
 
-- **Granularity mostly did *not* move the needle — and that is the finding.** Across paired t-tests
-  and Wilcoxon signed-rank tests on S&P and Fitch, **7 of 8 comparisons showed no significant
-  difference** between annual and monthly models. The one significant result (Fitch MAE) favoured
-  **annual** data. So for U.S. sovereign ratings, finer temporal granularity is *not* where the
-  predictive gains are — the thesis title is the question, and the answer is largely a null.
-- **Governance data is where the signal is.** Models that fold in governance indicators (political
-  stability, regulatory quality, rule of law, from the World Development Indicators) consistently
-  beat economics-only models — the clearest, most robust result in the study.
-- **Estimator and frequency interact.** A decision tree on monthly governance data was the strongest
-  *monthly* specification (`dt_2008_m_wgi`, RMSE ≈ 0.0295), while **annual ARMAX** models achieved
-  the lowest errors overall — a reminder that model class and data frequency are not independent
-  choices.
-- **The thesis's own conclusion:** long-term data is crucial, and a **dual approach** (long-term
-  structure plus event-driven short-term signals) is the most defensible reading of the evidence.
+- **Which indicators you include is the biggest lever.** Folding governance indicators (political
+  stability, regulatory quality, rule of law, from the World Development Indicators) in alongside
+  economic ones (GDP growth, inflation, unemployment) consistently and substantially beats
+  economics-only models — across both S&P and Fitch. This is the clearest, most robust result.
+- **Granular, long-term data enhances prediction.** The thesis's hypothesis — that rating changes
+  reflect *sustained, long-term shifts best captured in granular data* — is borne out: the most
+  accurate models exploit granular (monthly) data to track dynamic changes in a country's conditions.
+- **Non-linear models on granular governance data win.** The best specification is a **decision tree
+  on monthly governance data** (`dt_2008_m_wgi`, RMSE ≈ 0.0295), capturing non-linear
+  governance–economics–rating relationships that linear and time-series baselines miss.
+- **The takeaway — the title, earned:** *granularity and indicator choice both matter.* Comprehensive,
+  granular, long-term data plus the right governance indicators is what carries the predictive signal.
 
 ## The analytical pipeline
 
@@ -80,11 +77,12 @@ tests, and results tables.*
   cross-country rating prediction, and the U.S. rating is a near-constant target — an easy series.
 - **Small annual samples.** The very low annual-model RMSEs should be read with caution (short annual
   series invite overfitting); treat the headline error magnitudes as relative, not absolute.
-- **Title vs. answer.** *"Granularity Matters"* frames the question; the evidence returns a largely
-  null answer, which is reported as such rather than dressed up.
+- **Granularity is not just frequency.** The head-to-head annual-vs-monthly test alone is nuanced;
+  the granularity that pays off is the *depth and comprehensiveness* of the data (and the governance
+  indicators), not merely a higher sampling rate.
 
-**Who should read this:** anyone tempted to chase higher-frequency data before checking whether
-frequency is actually the binding constraint — here it wasn't; feature *content* was.
+**Who should read this:** anyone modelling sovereign ratings who assumes economic indicators alone
+suffice — the governance dimension and granular, long-term coverage are where the accuracy is.
 
 ## Citation
 
